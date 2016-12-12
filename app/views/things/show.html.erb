@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @thing.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @thing.description %>
+</p>
+
+<p>
+  <strong>Visits:</strong>
+  <%= @thing.visits %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @thing.user %>
+</p>
+
+<p>
+  <strong>Categoria:</strong>
+  <% Category.all.each do |cat| %>
+      <% if cat.id == @thing.category_id then %>
+      		<%= cat.name %>
+      <% end %>
+    <% end %>
+</p>
+
+<%= link_to 'Edit', edit_thing_path(@thing) %> |
+<%= link_to 'Back', things_path %>

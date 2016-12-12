@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CosasPerdidas</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<div>
+  <% if user_signed_in? %>
+	  	<%=current_user.email%>
+	  	<%=" | "%>
+	  	<%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %> <p class="notice"><%= notice %></p>
+	  <% else %>
+	  	<%= link_to "Iniciar Sesion", new_user_session_path %> - 
+	  	<%= link_to "Registrase", new_user_registration_path %>
+	  <%end%>
+</div>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
