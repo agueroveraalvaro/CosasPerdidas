@@ -13,6 +13,7 @@ class ThingsController < ApplicationController
   # GET /things/1.json
   def show
     @thing.update(visits: @thing.visits+1)
+    @comment=Comment.new
   end
 
   # GET /things/new
@@ -75,6 +76,6 @@ class ThingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def thing_params
-      params.require(:thing).permit(:name, :description, :category_id)
+      params.require(:thing).permit(:name, :description, :category_id,:photo1,:photo2,:photo3)
     end
 end

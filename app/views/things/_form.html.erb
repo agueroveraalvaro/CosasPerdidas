@@ -1,10 +1,11 @@
-<%= form_for(thing) do |f| %>
-  <% if thing.errors.any? %>
+<%= form_for @thing, :html => {:multipart => true} do |f| %>
+
+  <% if @thing.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(thing.errors.count, "error") %> prohibited this thing from being saved:</h2>
+      <h2><%= pluralize(@thing.errors.count, "error") %> prohibited this thing from being saved:</h2>
 
       <ul>
-      <% thing.errors.full_messages.each do |message| %>
+      <% @thing.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -29,9 +30,19 @@
       
     <% end %>
   </select>
-  <br /><br />
+  <br />
+
+    <%= f.file_field :photo1 %>
+    <br />
+    <%= f.file_field :photo2 %>
+    <br />
+    <%= f.file_field :photo3 %>
+
+
+    <br />
 
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

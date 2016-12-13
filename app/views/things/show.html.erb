@@ -17,7 +17,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @thing.user %>
+  <%= @thing.user.email %>
 </p>
 
 <p>
@@ -28,6 +28,26 @@
       <% end %>
     <% end %>
 </p>
+
+<br />
+<%= image_tag(@thing.photo1_url, :width => 170, :height => 190) if @thing.photo1.present? %>
+
+<%= image_tag(@thing.photo2_url, :width => 170, :height => 190) if @thing.photo2.present? %>
+
+<%= image_tag(@thing.photo3_url, :width => 170, :height => 190) if @thing.photo3.present? %>
+<br />
+
+<h2>Comentarios</h2>
+
+<% @thing.comments.each do |comment| %>
+    <h3><%= comment.body %></h3><%= comment.user.email %><br />
+    <% if current_user.id == comment.user_id %>
+    <%= link_to "Eliminar",  [comment.thing, comment], method: :delete %>
+    <% end %>
+<% end %>
+
+<%= render "comments/form" %>
+<br />
 
 <%= link_to 'Edit', edit_thing_path(@thing) %> |
 <%= link_to 'Back', things_path %>
