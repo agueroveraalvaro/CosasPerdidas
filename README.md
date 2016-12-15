@@ -1,9 +1,13 @@
 # CosasPerdidas
 
 
+
 Aplicación para encontrar cosas perdidas publicadas por las personas.
 
+
+
 Gemas :
+
   
   carrierwave : para utilizacion de imagenes
   
@@ -13,6 +17,7 @@ Gemas :
   
   devise : generacion de usuarios
   
+
 
 
 * Ruby version 2.3.0
