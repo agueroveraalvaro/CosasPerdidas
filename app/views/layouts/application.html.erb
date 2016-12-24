@@ -7,19 +7,67 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
-<div>
-  <% if user_signed_in? %>
-	  	<%=current_user.email%>
-	  	<%=" | "%>
-	  	<%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %> <p class="notice"><%= notice %></p>
-	  <% else %>
-	  	<%= link_to "Iniciar Sesion", new_user_session_path %> - 
-	  	<%= link_to "Registrase", new_user_registration_path %>
-	  <%end%>
-</div>
+
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a><%= link_to 'Cosas Perdidas', root_path, class:'navbar-brand' %></a>
+
+        </div>
+
+        <%= search_form_for @q do |t| %>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+          <div class="navbar-form navbar-left"><!-- Divide para ordenar (alinear al centro copiar y pegar)-->
+            <div class="form-group"><!-- Divide para ordenar (alinear al centro copiar y pegar)-->
+              
+              <%= t.search_field :name_or_description_cont, class:"form-group" %>
+            
+              <%= t.select :category_id_eq, options_from_collection_for_select(Category.all, "id", "name", @q.category_id_eq), include_blank: "Todas", class:'form-group' %>
+
+              
+                <button type="submit" class="form-group">Buscar</button>
+              
+            </div>
+          </div>
+
+        <% end %>
+
+          <ul class="nav navbar-nav navbar-right">
+
+            <% if user_signed_in? %>
+              <li>
+              <%= link_to current_user.firstname, root_path %>
+              </li>
+              
+              <li>
+              <%= link_to "Cerrar Sesion", destroy_user_session_path, method: :delete %>
+              </li>
+
+            <% else %>
+              <li>
+              <%= link_to "Iniciar Sesion", new_user_session_path %>
+              </li>
+
+              <li>
+              <%= link_to "Registrarse", new_user_registration_path %>
+              </li>
+            <%end%>
+            
+          </ul>
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
   <body>
     <%= yield %>

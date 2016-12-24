@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'kaminari'
 gem 'carrierwave'
 gem 'mini_magick', '~> 4.3'
 gem 'ransack'

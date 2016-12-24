@@ -6,7 +6,7 @@ class ThingsController < ApplicationController
   # GET /things.json
   def index
     @q = Thing.ransack(params[:q])
-    @things = @q.result(distinct: false)
+    @things = @q.result(distinct: false).page params[:page]
   end
 
   # GET /things/1
